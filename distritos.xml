@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<organizacao>
+	<distritos>
+		<distrito id='1'>
+			<dnome>Aveiro</dnome>
+			<concelhos>
+				<concelho id='1_1'>Águeda</concelho>
+				<concelho id='1_2'>Albergaria-a-Velha</concelho>
+				<concelho id='1_3'>Arouca</concelho>
+				<concelho id='1_4'>Aveiro</concelho>
+				<concelho id='1_5'>Catelo de Paiva</concelho>
+			</concelhos>
+		</distrito>
+		<distrito id='2'>
+			<dnome>Beja</dnome>
+			<concelhos>
+				<concelho id='2_1'>Aljustrel</concelho>
+				<concelho id='2_2'>Almodôvar</concelho>
+				<concelho id='2_3'>Alvito</concelho>
+				<concelho id='2_4'>Barrancos</concelho>
+				<concelho id='2_5'>Beja</concelho>
+			</concelhos>
+		</distrito>
+		<distrito id='3'>
+			<dnome>Braga</dnome>
+			<concelhos>
+				<concelho id='3_1'>Amares</concelho>
+				<concelho id='3_2'>Barcelos</concelho>
+				<concelho id='3_3'>Braga</concelho>
+				<concelho id='3_4'>Cabeceira de Basto</concelho>
+				<concelho id='3_5'>Celorico de Basto</concelho>
+				<concelho id='3_6'>Espodsende</concelho>
+			</concelhos>
+		</distrito>
+	</distritos>
+</organizacao>
