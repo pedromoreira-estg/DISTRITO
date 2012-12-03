@@ -37,15 +37,19 @@
 		
 		function loadConcelhos() {
 			
-			//theId     = $(selectD + ' option:selected').attr('value');
-			
+			// the changed element (sdistritos)
 			theChanged    = $(this);
+			// the selected option
 			theSelected   = theChanged.find('option:selected');
+			// the value of the selected option (== distrito id)
 			theSelectedId = theChanged.attr('value'); 
 			
+			// clean the concelhos select
 			cleanAndInit(selectC,'Seleccione Concelho');
 			
+			// select all concelhos from the node distrito that has id = theSelectedId
 			var theNode = $(docXML).find('distrito').filter('[id='+theSelectedId+']');
+			// add concelhos into the select element
 			$(theNode).find('concelho').each(showConcelho);
 			}
 			
@@ -71,10 +75,6 @@
 			// append
 			$(selector).append(nopt);
 		}
-		
-		
-		
-			
 		</script>
 	</head>
 	<body>
