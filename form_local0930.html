@@ -1,0 +1,74 @@
+<html>
+	<head>
+		<script src="jquery/jquery-1.8.3.min.js"></script>
+		<script>
+		
+			var requestXML;
+			var docXML;
+		
+			$(document).ready(init);
+			
+						
+			
+			function init() {
+				// load the XML information file;
+				
+				// ensure that select fields are empty and disabled
+				cleanAndDisable('sdistrito','a carregar distritos ...');
+				cleanAndDisable('sconcelho','a carregar concelhos...');
+				requestXML = $.ajax('distritos.xml',{async:false,dataType:'xml', success: onXML});
+			}
+			
+			function onXML(data) {
+				// docXML is DOM document (XML)
+				var docXML = data;
+				$('#sdistrito').empty();
+				var distritos = $( docXML ).find('distrito');
+				distritos.each(loadOptionD);
+			}
+			
+			function loadOptionD() {
+				var did   = $(this).attr('id');
+				var dnome = $(this).find('dnome').text();
+				var newDistrito = $('<option/>');
+				newDistrito.text(dnome);
+				newDistrito.attr('id',did);
+				$('#sdistrito').append(newDistrito);
+			}
+			
+			
+			
+			
+			
+			function cleanAndDisable(id,doption) {
+				// selector
+				var selector = '#'+id;
+				// empty the DOM node
+				$(selector).empty();
+				// insert the dummy option
+				var dopt = $("<option/>");
+				dopt.html(doption);
+				dopt.attr('selected','selected');
+				dopt.attr('disabled','disabled');
+				//dopt[0].disabled=true;
+				$(selector).append(dopt);	
+			}
+			
+		</script>
+	</head>
+	<body>
+		<form id="flocal" method="post" action="regista.php">
+			<label for="sdistrito">distrito:</label>
+			<select id="sdistrito" name="vdistrito">
+				<option disabled="disabled" selected="selected"> a carregar ... </option>
+				<option disabled="disabled" > a carregar 2 ... </option>
+				<option disabled="disabled" > a carregar 2 ... </option>
+			</select>
+			<br>
+			<label for="sconcelho">concelho:</label>
+			<select id="sconcelho" name="vconcelho">
+				<option disabled="disabled" selected="selected"> a carregar ... </option>
+			</select>
+		</form>
+	</body>
+</html>
