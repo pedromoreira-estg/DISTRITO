@@ -1,0 +1,93 @@
+<html>
+	<head>
+		<title> Formulário de Residência </title>
+		<script src="jquery/jquery-1.8.3.min.js"></script>
+		
+		<script>
+		
+		const docXMLURL = 'distritos.xml';
+		// the XML document with distritos and concelhos
+		var docXML;
+		
+		const selectD = '#sdistrito';
+		const selectC = '#sconcelho';
+		
+		$(document).ready(init);
+		
+		function init() {
+			cleanAndInit(selectD,'distritos : A CARREGAR ...');
+			cleanAndInit(selectC,'concelhos : A CARREGAR ...');
+			// load the XML document
+			$.ajax(docXMLURL, {async:false,dataType:'xml',success:onXMLDoc});
+			loadDistritos();
+			}
+		
+		function loadDistritos() {
+			cleanAndInit(selectD,'Seleccione Distrito');
+			$(docXML).find('distrito').each(showDistrito);
+			$(selectD).change(loadConcelhos);
+		}
+		
+		function showDistrito() {
+			var nopt = $('<option/>')
+			nopt.attr('value',$(this).attr('id'));
+			nopt.text($(this).find('dnome').text());
+			$(selectD).append(nopt);				
+		}
+		
+		function loadConcelhos() {
+			
+			//theId     = $(selectD + ' option:selected').attr('value');
+			
+			theChanged    = $(this);
+			theSelected   = theChanged.find('option:selected');
+			theSelectedId = theChanged.attr('value'); 
+			
+			cleanAndInit(selectC,'Seleccione Concelho');
+			
+			var theNode = $(docXML).find('distrito').filter('[id='+theSelectedId+']');
+			$(theNode).find('concelho').each(showConcelho);
+			}
+			
+		function showConcelho() {
+			var nopt = $('<option/>')
+			nopt.attr('value',$(this).attr('id'));
+			nopt.text($(this).text());
+			$(selectC).append(nopt);				
+		}
+		
+		function onXMLDoc(data) {
+			docXML = data;			
+		}
+		
+		function cleanAndInit(selector,msg) {
+			// empty 
+			$(selector).empty();
+			// creates new dummy option
+			var nopt = $("<option/>");
+			nopt.text(msg);
+			nopt.attr('disabled','disabled');
+			nopt.attr('selected','selected');
+			// append
+			$(selector).append(nopt);
+		}
+		
+		
+		
+			
+		</script>
+	</head>
+	<body>
+		<form action="regista.php" method="post" id="flocal">
+			<label for="sdistrito"> distrito </label>
+			<select id="sdistrito" name="vdistrito">
+				<option selected="selected" disabled="disabled"> distritos: a carregar...</option>
+			</select>
+			<br/>
+			<label for="sconcelho"> concelho </label>
+			<select id="sconcelho" name="vconcelho">
+				<option selected="selected" disabled="disabled"> concelhos: a carregar...</option>
+			</select>
+		</form> 
+	</body>
+</html>
