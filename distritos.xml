@@ -8,7 +8,7 @@
 				<concelho id='1_2'>Albergaria-a-Velha</concelho>
 				<concelho id='1_3'>Arouca</concelho>
 				<concelho id='1_4'>Aveiro</concelho>
-				<concelho id='1_5'>Catelo de Paiva</concelho>
+				<concelho id='1_5'>Castelo de Paiva</concelho>
 			</concelhos>
 		</distrito>
 		<distrito id='2'>
@@ -29,7 +29,7 @@
 				<concelho id='3_3'>Braga</concelho>
 				<concelho id='3_4'>Cabeceira de Basto</concelho>
 				<concelho id='3_5'>Celorico de Basto</concelho>
-				<concelho id='3_6'>Espodsende</concelho>
+				<concelho id='3_6'>Esposende</concelho>
 			</concelhos>
 		</distrito>
 	</distritos>
