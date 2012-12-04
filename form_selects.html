@@ -14,22 +14,46 @@
 		const selectD = '#sdistrito';
 		const selectC = '#sconcelho';
 		
+		var distritoReady = false;
+		var concelhoReady = false;
+		
+		var distritoSelected = false;
+		var concelhoSelected = false;
+		
 		$(document).ready(init);
 		
 		function init() {
+			debugger;
+			$("#flocal").submit(validate);
+			$("#flocal").bind("reset",initform);
+		
 			// cleans and initializes the select drop down fields
 			cleanAndInit(selectD,'distritos : LOADING ...');
-			cleanAndInit(selectC,'concelhos : LOADIND ...');
+			cleanAndInit(selectC,'concelhos : LOADING ...');
+			
 			// load the XML document
 			$.ajax(docXMLURL, {async:false,dataType:'xml',success:onXMLDoc});
-			debugger;
 			loadDistritos();
+			debugger;
+			
 			}
+		
+		function initform() {
+			cleanAndInit(selectD,'distritos : LOADING ...');
+			cleanAndInit(selectC,'concelhos : LOADING ...');
+			distritoReady 		= false;
+			distritoSelected 	= false;
+			distritoReady 		= false;
+			concelhoSelected 	= false;
+			loadDistritos();
+		}
 		
 		function loadDistritos() {
 			cleanAndInit(selectD,'Seleccione Distrito');
 			$(docXML).find('distrito').each(showDistrito);
 			$(selectD).change(loadConcelhos);
+			distritoReady 		= true;
+			distritoSelected 	= false;
 		}
 		
 		function showDistrito() {
@@ -55,8 +79,17 @@
 			var theNode = $(docXML).find('distrito').filter('[id='+theSelectedId+']');
 			// add concelhos into the select element
 			$(theNode).find('concelho').each(showConcelho);
+			
+			$(selectC).change(checkConcelhos);
+			distritoSelected = true;
+			concelhoReady = true;
+			concelhoSelected = false;
+			
 			}
 			
+		function checkConcelhos( ){
+			concelhoSelected = true;
+		}
 		function showConcelho() {
 			var nopt = $('<option/>')
 			nopt.attr('value',$(this).attr('id'));
@@ -79,10 +112,19 @@
 			// append
 			$(selector).append(nopt);
 		}
+		
+		function validate() {
+			debugger;
+			var valid = false;
+			if (concelhoSelected && concelhoReady && distritoSelected && distritoReady) {
+				valid = true;
+			}
+			return valid;
+		}
 		</script>
 	</head>
 	<body>
-		<form action="regista.php" method="post" id="flocal">
+		<form action="show.php" method="post" id="flocal">
 			<label for="sdistrito"> district </label>
 			<select id="sdistrito" name="vdistrito">
 				<option selected="selected" disabled="disabled"> districts : loading...</option>
@@ -92,6 +134,9 @@
 			<select id="sconcelho" name="vconcelho">
 				<option selected="selected" disabled="disabled"> councils: loading...</option>
 			</select>
+			<br/>
+			<input type="submit" />
+			<input type="reset" />
 		</form> 
 	</body>
 </html>
