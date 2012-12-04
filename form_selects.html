@@ -25,18 +25,22 @@
 		function init() {
 			debugger;
 			$("#flocal").submit(validate);
-			$("#flocal").bind("reset",initform);
+			$("#flocal").bind("reset",resetform);
 		
-			// cleans and initializes the select drop down fields
-			cleanAndInit(selectD,'distritos : LOADING ...');
-			cleanAndInit(selectC,'concelhos : LOADING ...');
+			// inits the form and associated flags
+			initform();
 			
 			// load the XML document
 			$.ajax(docXMLURL, {async:false,dataType:'xml',success:onXMLDoc});
+			
 			loadDistritos();
-			debugger;
 			
 			}
+		
+		function resetform() {
+			initform();
+			loadDistritos();
+		}
 		
 		function initform() {
 			cleanAndInit(selectD,'distritos : LOADING ...');
@@ -45,7 +49,6 @@
 			distritoSelected 	= false;
 			distritoReady 		= false;
 			concelhoSelected 	= false;
-			loadDistritos();
 		}
 		
 		function loadDistritos() {
@@ -127,12 +130,12 @@
 		<form action="show.php" method="post" id="flocal">
 			<label for="sdistrito"> district </label>
 			<select id="sdistrito" name="vdistrito">
-				<option selected="selected" disabled="disabled"> districts : loading...</option>
+				<!--option selected="selected" disabled="disabled"> districts : loading...</option-->
 			</select>
 			<br/>
 			<label for="sconcelho"> council </label>
 			<select id="sconcelho" name="vconcelho">
-				<option selected="selected" disabled="disabled"> councils: loading...</option>
+				<!--option selected="selected" disabled="disabled"> councils: loading...</option-->
 			</select>
 			<br/>
 			<input type="submit" />
