@@ -5,7 +5,9 @@
 		
 		<script>
 		
+		// the URL for the XML info
 		const docXMLURL = 'distritos.xml';
+		
 		// the XML document with distritos and concelhos
 		var docXML;
 		
@@ -15,10 +17,12 @@
 		$(document).ready(init);
 		
 		function init() {
-			cleanAndInit(selectD,'distritos : A CARREGAR ...');
-			cleanAndInit(selectC,'concelhos : A CARREGAR ...');
+			// cleans and initializes the select drop down fields
+			cleanAndInit(selectD,'distritos : LOADING ...');
+			cleanAndInit(selectC,'concelhos : LOADIND ...');
 			// load the XML document
 			$.ajax(docXMLURL, {async:false,dataType:'xml',success:onXMLDoc});
+			debugger;
 			loadDistritos();
 			}
 		
@@ -79,14 +83,14 @@
 	</head>
 	<body>
 		<form action="regista.php" method="post" id="flocal">
-			<label for="sdistrito"> distrito </label>
+			<label for="sdistrito"> district </label>
 			<select id="sdistrito" name="vdistrito">
-				<option selected="selected" disabled="disabled"> distritos: a carregar...</option>
+				<option selected="selected" disabled="disabled"> districts : loading...</option>
 			</select>
 			<br/>
-			<label for="sconcelho"> concelho </label>
+			<label for="sconcelho"> council </label>
 			<select id="sconcelho" name="vconcelho">
-				<option selected="selected" disabled="disabled"> concelhos: a carregar...</option>
+				<option selected="selected" disabled="disabled"> councils: loading...</option>
 			</select>
 		</form> 
 	</body>
