@@ -1,8 +1,10 @@
 <html>
 	<head>
-		<title> Formulário de Residência </title>
+		<title> Residence form </title>
 		<script src="jquery/jquery-1.8.3.min.js"></script>
 		
+		<style>
+		</style>
 		<script>
 		
 		// the URL for the XML info
@@ -119,7 +121,8 @@
 		function validate() {
 			debugger;
 			var valid = false;
-			if (concelhoSelected && concelhoReady && distritoSelected && distritoReady) {
+			//if (concelhoSelected && concelhoReady && distritoSelected && distritoReady) {
+			if (concelhoSelected && distritoSelected) {
 				valid = true;
 			}
 			return valid;
@@ -133,9 +136,9 @@
 				<!--option selected="selected" disabled="disabled"> districts : loading...</option-->
 			</select>
 			<br/>
-			<label for="sconcelho"> council </label>
+			<label for="sconcelho"> county </label>
 			<select id="sconcelho" name="vconcelho">
-				<!--option selected="selected" disabled="disabled"> councils: loading...</option-->
+				<!--option selected="selected" disabled="disabled"> counties: loading...</option-->
 			</select>
 			<br/>
 			<input type="submit" />
